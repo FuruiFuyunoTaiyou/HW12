@@ -11,14 +11,12 @@ int main(){
   int f1;
   if(f0){
     f1 = fork();
-    /*if(f1){
-      printf("pid: %d \n", getpid());
-      }*/
   }
   if(f0 && f1){
     int status;
     int finished = wait(&status);
-    printf("finished child: %d, sleeping for %d s \n", finished, 123456);
+    printf("finished child: %d, sleeping for %d s \n", finished, WEXITSTATUS(status));
+    printf("parent process finished. \n");
   }
   if(!f1 || !f0){
     srand(time(NULL) + f0);
